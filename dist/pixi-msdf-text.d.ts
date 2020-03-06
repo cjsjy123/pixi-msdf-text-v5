@@ -19,24 +19,20 @@ export interface MSDFTextOption {
     kerning?: boolean;
     lineSpacing?: number;
     maxWidth?: number;
+    noCheck?: boolean;
     debugLevel?: 1 | 2 | 3;
     pxrange?: number;
 }
-export class MSDFText extends PIXI.mesh.Mesh {
-    constructor(text: string, options: MSDFTextOption);
-    updateText(): void;
+export class MSDFText extends PIXI.Mesh {
+    static Debug: boolean;
     text: string;
     readonly fontData: any;
-    readonly glDatas: any;
     readonly textWidth: number;
     readonly textHeight: number;
     readonly maxWidth: number;
     readonly textMetric: PIXI.Rectangle;
-}
-
-export class MSDFRenderer extends PIXI.ObjectRenderer {
-    constructor(renderer: PIXI.WebGLRenderer);
-    onContextChange(): void;
-    render(msdfText: MSDFText): void;
+    constructor(text: string, options: MSDFTextOption);
+    updateText(): void;
+    updateUniforms(): void;
 }
 
